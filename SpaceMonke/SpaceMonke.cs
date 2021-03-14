@@ -8,8 +8,8 @@ using Utilla;
 
 namespace SpaceMonke
 {
-    [BepInPlugin("org.legoandmars.gorillatag.spacemonke", "Space Monke", "1.1.0")]
-    [BepInDependency("org.legoandmars.gorillatag.utilla", "1.0.0")]
+    [BepInPlugin("org.legoandmars.gorillatag.spacemonke", "Space Monke", "1.2.0")]
+    [BepInDependency("org.legoandmars.gorillatag.utilla", "1.3.0")]
     public class SpaceMonke : BaseUnityPlugin
     {
         public static bool allowSpaceMonke = false;
@@ -23,9 +23,12 @@ namespace SpaceMonke
             multiplier = customFile.Bind("Configuration", "JumpMultiplier", 10f, "How much to multiply the jump height/distance by. 10 = 10x higher jumps");
         }
 
-        private void RoomJoined(bool isPrivate)
+        private void RoomJoined(object sender, Events.RoomJoinedArgs e)
         {
-            allowSpaceMonke = isPrivate;
+            if(e != null && e.isPrivate != null)
+            {
+                allowSpaceMonke = e.isPrivate;
+            }
         }
     }
 }
