@@ -15,8 +15,8 @@ namespace SpaceMonke.HarmonyPatches
             if (SpaceMonke.allowSpaceMonke)
             {
                 ResetSpeed = true;
-                __instance.jumpMultiplier = (40f * (SpaceMonke.multiplier.Value / 10));
-                __instance.maxJumpSpeed = (40f * (SpaceMonke.multiplier.Value / 10));
+                __instance.jumpMultiplier = (20 * (SpaceMonke.multiplier.Value / 10));
+                __instance.maxJumpSpeed = (20 * (SpaceMonke.multiplier.Value / 10));
                 __instance.velocityLimit = 0.01f / (SpaceMonke.multiplier.Value / 10);
                 if(SpaceMonke.multiplier.Value == 1)
                 {
