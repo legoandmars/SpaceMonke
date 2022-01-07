@@ -9,26 +9,36 @@ using Utilla;
 namespace SpaceMonke
 {
     [BepInPlugin("org.legoandmars.gorillatag.spacemonke", "Space Monke", "1.2.0")]
-    [BepInDependency("org.legoandmars.gorillatag.utilla", "1.3.0")]
+    [BepInDependency("org.legoandmars.gorillatag.utilla", "1.5.0")]
+    [ModdedGamemode]
     public class SpaceMonke : BaseUnityPlugin
     {
         public static bool allowSpaceMonke = false;
         public static ConfigEntry<float> multiplier;
-        void Awake()
+
+        void OnEnable()
         {
-            Utilla.Events.RoomJoined += RoomJoined;
             SpaceMonkePatches.ApplyHarmonyPatches();
 
             var customFile = new ConfigFile(Path.Combine(Paths.ConfigPath, "SpaceMonke.cfg"), true);
             multiplier = customFile.Bind("Configuration", "JumpMultiplier", 10f, "How much to multiply the jump height/distance by. 10 = 10x higher jumps");
         }
 
-        private void RoomJoined(object sender, Events.RoomJoinedArgs e)
+        void OnDisable()
         {
-            if(e != null && e.isPrivate != null)
-            {
-                allowSpaceMonke = e.isPrivate;
-            }
+            SpaceMonkePatches.RemoveHarmonyPatches();
         }
+
+        [ModdedGamemodeJoin]
+        private void RoomJoined()
+		{
+            allowSpaceMonke = true;
+		}
+
+        [ModdedGamemodeLeave]
+        private void RoomLeft()
+		{
+            allowSpaceMonke = false;
+		}
     }
 }
