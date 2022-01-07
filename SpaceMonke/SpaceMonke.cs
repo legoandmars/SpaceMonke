@@ -15,12 +15,18 @@ namespace SpaceMonke
     {
         public static bool allowSpaceMonke = false;
         public static ConfigEntry<float> multiplier;
-        void Awake()
+
+        void OnEnable()
         {
             SpaceMonkePatches.ApplyHarmonyPatches();
 
             var customFile = new ConfigFile(Path.Combine(Paths.ConfigPath, "SpaceMonke.cfg"), true);
             multiplier = customFile.Bind("Configuration", "JumpMultiplier", 10f, "How much to multiply the jump height/distance by. 10 = 10x higher jumps");
+        }
+
+        void OnDisable()
+        {
+            SpaceMonkePatches.RemoveHarmonyPatches();
         }
 
         [ModdedGamemodeJoin]
