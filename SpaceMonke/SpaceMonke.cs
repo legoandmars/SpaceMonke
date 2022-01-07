@@ -8,7 +8,7 @@ using Utilla;
 
 namespace SpaceMonke
 {
-    [BepInPlugin("org.legoandmars.gorillatag.spacemonke", "Space Monke", "1.2.0")]
+    [BepInPlugin("org.legoandmars.gorillatag.spacemonke", "Space Monke", "1.2.1")]
     [BepInDependency("org.legoandmars.gorillatag.utilla", "1.5.0")]
     [ModdedGamemode]
     public class SpaceMonke : BaseUnityPlugin
