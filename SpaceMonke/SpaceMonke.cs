@@ -10,7 +10,7 @@ using System.ComponentModel;
 namespace SpaceMonke
 {
     [Description("HauntedModMenu")]
-    [BepInPlugin("org.legoandmars.gorillatag.spacemonke", "Space Monke", "1.2.1")]
+    [BepInPlugin("org.legoandmars.gorillatag.spacemonke", "Space Monke", "1.2.2")]
     [BepInDependency("org.legoandmars.gorillatag.utilla", "1.5.0")]
     [ModdedGamemode]
     public class SpaceMonke : BaseUnityPlugin
