@@ -5,9 +5,11 @@ using BepInEx.Configuration;
 using SpaceMonke.HarmonyPatches;
 using UnityEngine;
 using Utilla;
+using System.ComponentModel;
 
 namespace SpaceMonke
 {
+    [Description("HauntedModMenu")]
     [BepInPlugin("org.legoandmars.gorillatag.spacemonke", "Space Monke", "1.2.1")]
     [BepInDependency("org.legoandmars.gorillatag.utilla", "1.5.0")]
     [ModdedGamemode]
