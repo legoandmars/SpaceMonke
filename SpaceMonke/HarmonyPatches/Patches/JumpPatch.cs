@@ -6,32 +6,32 @@ using HarmonyLib;
 namespace SpaceMonke.HarmonyPatches
 {
     [HarmonyPatch(typeof(GorillaLocomotion.Player))]
-    [HarmonyPatch("Update", MethodType.Normal)]
+    [HarmonyPatch("LateUpdate", MethodType.Normal)]
     internal class JumpPatch
     {
         public static bool ResetSpeed = false;
-        private static void Prefix(GorillaLocomotion.Player __instance)
+        private static void Prefix()
         {
             if (SpaceMonke.allowSpaceMonke)
             {
                 ResetSpeed = true;
-                __instance.jumpMultiplier = (20 * (SpaceMonke.multiplier.Value / 10));
-                __instance.maxJumpSpeed = (20 * (SpaceMonke.multiplier.Value / 10));
-                __instance.velocityLimit = 0.01f / (SpaceMonke.multiplier.Value / 10);
+                GorillaLocomotion.Player.Instance.jumpMultiplier = (20 * (SpaceMonke.multiplier.Value / 10));
+                GorillaLocomotion.Player.Instance.maxJumpSpeed = (20 * (SpaceMonke.multiplier.Value / 10));
+                GorillaLocomotion.Player.Instance.velocityLimit = 0.01f / (SpaceMonke.multiplier.Value / 10);
                 if(SpaceMonke.multiplier.Value == 1)
                 {
-                    __instance.jumpMultiplier = 1.1f;
-                    __instance.maxJumpSpeed = 6.5f;
-                    __instance.velocityLimit = 0.3f;
+                    GorillaLocomotion.Player.Instance.jumpMultiplier = 1.1f;
+                    GorillaLocomotion.Player.Instance.maxJumpSpeed = 6.5f;
+                    GorillaLocomotion.Player.Instance.velocityLimit = 0.3f;
                 }
             }
             else
             {
-                if(ResetSpeed == true || __instance.maxJumpSpeed == (40f * (SpaceMonke.multiplier.Value/10)))
+                if(ResetSpeed == true || GorillaLocomotion.Player.Instance.maxJumpSpeed == (40f * (SpaceMonke.multiplier.Value/10)))
                 {
-                    __instance.jumpMultiplier = 1.1f;
-                    __instance.maxJumpSpeed = 6.5f;
-                    __instance.velocityLimit = 0.3f;
+                    GorillaLocomotion.Player.Instance.jumpMultiplier = 1.1f;
+                    GorillaLocomotion.Player.Instance.maxJumpSpeed = 6.5f;
+                    GorillaLocomotion.Player.Instance.velocityLimit = 0.3f;
                     ResetSpeed = false;
                 }
             }
